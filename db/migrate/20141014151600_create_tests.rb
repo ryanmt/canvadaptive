@@ -7,6 +7,7 @@ class CreateTests < ActiveRecord::Migration
       t.string :updated_at
       t.integer :attempt
       t.integer :canvas_id
+      t.integer :canvas_course_id
 
       t.timestamps
     end

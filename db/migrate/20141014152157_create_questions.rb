@@ -9,6 +9,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :asked_count
       t.integer :correct_count
       t.text :question_type
+      t.references :test
 
       t.timestamps
     end

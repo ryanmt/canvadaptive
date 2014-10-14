@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141014163441) do
     t.integer  "asked_count"
     t.integer  "correct_count"
     t.text     "question_type"
+    t.integer  "test_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141014163441) do
     t.datetime "updated_at"
     t.integer  "attempt"
     t.integer  "canvas_id"
+    t.integer  "canvas_course_id"
   end
 
   create_table "users", force: true do |t|

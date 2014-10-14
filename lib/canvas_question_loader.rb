@@ -1,7 +1,7 @@
 class CanvasQuestionLoader
   require 'open-uri'
-
-  URL_BASE = "localhost:3000"
+  ALLOWED_QUESTION_TYPES = %w(multiple_answers_question true_false_question)
+  URL_BASE = "https://localhost:3000"
   HEADER = {
     "Content-Type" => 'application/json',
     "Accept" => 'application/vnd.api+json',
@@ -12,23 +12,36 @@ class CanvasQuestionLoader
   def initialize(course_id: 1, quiz_id: 1)
     @course_id = course_id
     @quiz_id = quiz_id
-    binding.pry
     @url = URL_BASE + "/api/v1/courses/#{@course_id}/quizzes/#{@quiz_id}"
   end
-  
-  def fetch
+
+  def make_request(url)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host,uri.port)
+    req = Net::HTTP::Get.new(uri.path, initheader = HEADER)
+    response = http.start {|http| http.request(req)}
+    response.body if response.msg == "OK"
+  end
+
+  def fetch_questions
     url = @url + "/questions"
-    @questions_hash = JSON.parse(open(url, HEADER).read)
+    @questions_hash = JSON.parse(make_request(url))
   end
 
   def fetch_statistics
     url = @url + "/statistics"
-    @statistics_hash = JSON.parse(open(url, HEADER).read)
+    @statistics_hash = JSON.parse(make_request(url))
+  end
+ 
+  def fetch_quiz
   end
 
   def parse_questions_into_DB
+    @test = Test.create!(canvas_id: @quiz_id, canvas_course_id: @course_id, title: @title? @title : "#{@course_id}_#{@quiz_id}")
     @questions_hash.each do |question_hash|
-      @question = Question.create(
+      next unless ALLOWED_QUESTION_TYPES.include?(question_hash["question_type"])
+      @question = Question.create!(
+        test_id: @test.id,
         canvas_id: question_hash["id"],
         text: question_hash["question_text"],
         name: question_hash["question_name"],
@@ -39,12 +52,22 @@ class CanvasQuestionLoader
         difficulty: 0
       )
       @answers = question_hash["answers"].map do |answer|
-        Answer.create(
+        Answer.create!(
           question_id: @question.id,
           correct: answer['weight'] == 100 ? true : false,
           text: answer['text']
         )
       end
     end
+  end
+
+  def parse_statistics_into_DB
+  end
+
+  def process!
+    fetch_questions
+    parse_questions_into_DB
+    fetch_statistics
+    parse_statistics_into_DB
   end
 end
