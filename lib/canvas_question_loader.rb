@@ -12,6 +12,7 @@ class CanvasQuestionLoader
   def initialize(course_id: 1, quiz_id: 1)
     @course_id = course_id
     @quiz_id = quiz_id
+    binding.pry
     @url = URL_BASE + "/api/v1/courses/#{@course_id}/quizzes/#{@quiz_id}"
   end
   

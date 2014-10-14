@@ -17,7 +17,8 @@ module Canvadaptive
   class Application < Rails::Application
 
     require 'ims/lti'
-    config.autoload_paths += Dir["#{Rails.root}/lib/*"]
+    config.autoload_paths += Dir["#{Rails.root}/lib/**"]
+    require 'canvas_question_loader'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
