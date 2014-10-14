@@ -21,6 +21,11 @@ class TestsController < ApplicationController
   def edit
   end
 
+  def take
+    render 401 if @current_user.attempts_left?
+    #fetch questions at current difficulty
+  end
+
   # POST /tests
   # POST /tests.json
   def create

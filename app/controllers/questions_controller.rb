@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
   end
+  
+  def get_one
+    # at a specific difficulty level...
+  end
 
   # POST /questions
   # POST /questions.json

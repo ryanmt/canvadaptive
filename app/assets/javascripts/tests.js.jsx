@@ -11,5 +11,5 @@ var TestRoot = React.createClass({
 })
 
 React.renderComponent(
-  <TestRoot/>, document.getElementById("test_content")
+//  <TestRoot/>, document.getElementById("test_content")
 );

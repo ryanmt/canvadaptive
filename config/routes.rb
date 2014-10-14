@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :questions
 
   resources :tests
+  get "test/:id/take" => 'test#take'
 
   resources :users
 
@@ -60,7 +61,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  post "lti_launch" => "lti_launch#create"
+  post "lti_launch" => "lti#create"
+  post "tool_config.xml" => "lti#config"
 
   root 'pages#index'
 end

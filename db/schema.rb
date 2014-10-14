@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014163441) do
+ActiveRecord::Schema.define(version: 20141014211107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,10 @@ ActiveRecord::Schema.define(version: 20141014163441) do
     t.integer  "attempt"
     t.integer  "canvas_id"
     t.integer  "canvas_course_id"
+    t.integer  "question_min"
+    t.integer  "question_max"
+    t.float    "mastery_threshold"
+    t.float    "failure_threshold"
   end
 
   create_table "users", force: true do |t|
