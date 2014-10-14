@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -38,9 +38,14 @@ gem 'react-rails', '~> 0.10.0.0'
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development, :test do
+  gem 'pry'
+  gem 'rspec-rails'
+end
 
-gem 'oauth'
 # LTI
+gem 'oauth'
 gem 'ims-lti', '~> 1.1.4'
-gem 'pry'
+
+# Heroku like environment gem requirements
+gem 'rails_12factor'

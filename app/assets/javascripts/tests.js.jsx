@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var PagesRoot = React.createClass({
+var TestRoot = React.createClass({
   render: function() {
     return (
       <p>
@@ -11,5 +11,5 @@ var PagesRoot = React.createClass({
 })
 
 React.renderComponent(
-  <PagesRoot/>, document.getElementById("pages_content")
+  <TestRoot/>, document.getElementById("test_content")
 );

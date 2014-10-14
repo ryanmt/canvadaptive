@@ -17,7 +17,7 @@ module Canvadaptive
   class Application < Rails::Application
 
     require 'ims/lti'
-    config.autoload_paths += Dir["#{Rails.root}/lib/authentication"]
+    config.autoload_paths += Dir["#{Rails.root}/lib/*"]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
