@@ -1,3 +1,5 @@
 prefix: /api/v1
-url: URL_HERE
-api_key: BLAHBLEHBLOUGH
+url: 127.0.0.1:3000
+api_key: My precious
+client_key: mary_poppins
+client_secret: supercalifragilisticexpialidocious
