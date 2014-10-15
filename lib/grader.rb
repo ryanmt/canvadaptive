@@ -8,6 +8,13 @@ class Grader
       answered_wrongly(question, test_instance)
     end
   end
+  def grab_next_question(user)
+    # MAX difference from Test
+    range = 0..1
+    Question.where(difficulty: range)
+  end
+
+  private
   def answered_correctly(question, test_instance)
     question.update_counts! true
     test_instance.update_question_lists!(question, true)
@@ -15,10 +22,5 @@ class Grader
   def answered_wrongly(question, test_instance)
     question.update_counts! false
     test_instance.update_question_lists!(question)
-  end
-  def grab_next_question(user)
-    # MAX difference from Test
-    range = 0..1
-    Question.where(difficulty: range)
   end
 end

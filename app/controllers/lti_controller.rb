@@ -1,7 +1,7 @@
 class LtiController < ApplicationController
   require 'authentication' # shouldn't need this
   include Authentication
-  skip_before_filter :verify_authenticity_token, :only => [:launch]
+  skip_before_filter :verify_authenticity_token, :only => [:launch, :config]
   before_filter :allow_iframe_requests
   def allow_iframe_requests
     response.headers['X-Frame-Options'] = "ALLOWALL"
@@ -29,7 +29,7 @@ class LtiController < ApplicationController
     redirect_to tests_path
   end
 
-  def config
+  def xml_config
     host = "#{request.protocol}#{request.host_with_port}"
     url = "#{host}#{lti_launch_path}"
     title = "Canvadaptive Testing"
@@ -50,6 +50,7 @@ class LtiController < ApplicationController
     # post the score to the TC, score should be a float >= 0.0 and <= 1.0
     # this returns an OutcomeResponse object
     #response = @tp.post_replace_result_with_data!(score, data_which_resembles_json)
+    #TODO RESTORE @tp from the params
     response = @tp.post_replace_result!(score)
     if response.success?
       # grade write worked

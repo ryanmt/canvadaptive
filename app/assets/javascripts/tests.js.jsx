@@ -4,12 +4,12 @@ var TestRoot = React.createClass({
   render: function() {
     return (
       <p>
-        Say Hi!
+        $.get()
       </p>
     )
   }
 })
 
-//React.renderComponent(
-//  <TestRoot/>, document.getElementById("test_content")
-//);
+React.renderComponent(
+  <TestRoot/>, document.getElementById("test_content")
+);

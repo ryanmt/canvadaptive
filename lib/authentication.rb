@@ -26,7 +26,7 @@ module Authentication
       return false
     end
 
-    @username = @tp.username("Dude")
+    @username = @tp.username
 
     return true
   end

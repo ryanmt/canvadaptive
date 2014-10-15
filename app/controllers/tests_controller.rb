@@ -23,7 +23,7 @@ class TestsController < ApplicationController
 
   def take
     render 401 if @current_user.attempts_left?
-    #fetch questions at current difficulty
+    #fetch questions at current difficulty from lib/grader.rb
   end
 
   # POST /tests
