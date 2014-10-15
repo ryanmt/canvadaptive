@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   post "lti/launch" => "lti#launch"
-  post "tool_config(.xml)" => "lti#config"
+  get "tool_config(.xml)" => "lti#config"
 
   match "/oauth/launch" => "oauth#oauth_launch", via: [:get], as: :oauth_launch
   match "/oauth2response" => "oauth#oauth_response", via: [:get], as: :oauth_response

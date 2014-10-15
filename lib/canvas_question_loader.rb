@@ -1,11 +1,11 @@
 class CanvasQuestionLoader
   require 'open-uri'
   ALLOWED_QUESTION_TYPES = %w(multiple_answers_question true_false_question)
-  URL_BASE = "https://localhost:3000"
+  #URL_BASE = ::CanvasProxy[:url]
   HEADER = {
     "Content-Type" => 'application/json',
-    "Accept" => 'application/vnd.api+json',
-    "Authorization" => 'Bearer 0aESpgltJtPEHwLgplgDJxSQKZiQ1lCiULV0NfNXP5MI1f3v6uY3745bQfIXGzBT'
+    "Accept" => 'application/vnd.api+json'#,
+    #{}"Authorization" => "Bearer #{CanvasProxy[:api_key]}"
   }
   attr_accessor :questions_hash, :statistics_hash
 

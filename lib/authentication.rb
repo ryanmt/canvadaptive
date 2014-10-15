@@ -1,5 +1,5 @@
 module Authentication
-  $oauth_creds = { "mary_poppins" => "supercalifragilisticexpialidocious" }
+  $oauth_creds = { CanvasProxy[:client_key] => CanvasProxy[:client_secret] }
 
   def authenticate!
     if key = params['oauth_consumer_key']
