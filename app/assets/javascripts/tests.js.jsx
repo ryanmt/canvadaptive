@@ -10,6 +10,6 @@ var TestRoot = React.createClass({
   }
 })
 
-React.renderComponent(
+//React.renderComponent(
 //  <TestRoot/>, document.getElementById("test_content")
-);
+//);

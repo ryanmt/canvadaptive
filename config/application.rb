@@ -15,6 +15,7 @@ Bundler.require(*Rails.groups)
 
 module Canvadaptive
   class Application < Rails::Application
+    config.middleware.use("CanvasProxy")
 
     require 'ims/lti'
     config.autoload_paths += Dir["#{Rails.root}/lib/**"]

@@ -46,6 +46,7 @@ end
 # LTI
 gem 'oauth'
 gem 'ims-lti', '~> 1.1.4'
+gem 'rack-proxy'
 
 # Heroku like environment gem requirements
 gem 'rails_12factor'

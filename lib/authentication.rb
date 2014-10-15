@@ -30,4 +30,10 @@ module Authentication
 
     return true
   end
+  def valid_request?(request)
+    @tp.valid_request?(request)
+  end
+  def outcome_service?
+    @tp.outcome_service?
+  end
 end

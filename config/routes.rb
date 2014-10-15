@@ -61,8 +61,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  post "lti_launch" => "lti#create"
-  post "tool_config.xml" => "lti#config"
+  post "lti/launch" => "lti#launch"
+  post "tool_config(.xml)" => "lti#config"
+
+  match "/oauth/launch" => "oauth#oauth_launch", via: [:get], as: :oauth_launch
+  match "/oauth2response" => "oauth#oauth_response", via: [:get], as: :oauth_response
 
   root 'pages#index'
 end
