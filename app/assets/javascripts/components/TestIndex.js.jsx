@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var TestStartPage = React.createClass({
+var TestIndex = React.createClass({
 
     propTypes: {
         testName: React.PropTypes.string.isRequired

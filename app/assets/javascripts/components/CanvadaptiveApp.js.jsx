@@ -3,7 +3,7 @@
 var CanvadaptiveApp = React.createClass({
    render: function () {
        return <div>
-            <TestStartPage testName="Awesome Test" />
+            <TestIndex testName={this.props.title} />
            </div>
    }
 });

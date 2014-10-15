@@ -2,10 +2,6 @@ class LtiController < ApplicationController
   require 'authentication' # shouldn't need this
   include Authentication
   skip_before_filter :verify_authenticity_token, :only => [:launch, :config]
-  before_filter :allow_iframe_requests
-  def allow_iframe_requests
-    response.headers['X-Frame-Options'] = "ALLOWALL"
-  end
 
 =begin
 #<IMS::LTI::ToolProvider:0x007fb87c9bacd0
@@ -21,12 +17,12 @@ class LtiController < ApplicationController
   def launch
     authenticate!
     @launch_params = params.reject! {|k,v| ['controller', 'action'].include? k }
-    p @launch_params
-    # 3 options for storing this:
     # 1. DB backed storage of launches (reference by ID, serialized content)
-    # 2. Session storage of the params you need
-    # 3. Store the params rendered onto the pages (I'm going to be rendering LOTS of pages)
-    redirect_to tests_path
+    if @launch_params["ext_roles"] =~ /Instructor/
+      redirect_to "/"
+    else
+      redirect_to tests_path
+    end
   end
 
   def xml_config
