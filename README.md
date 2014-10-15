@@ -2,4 +2,4 @@ Basic implementation of an LTI tool which connects to another external API which
 
 
 
-(C) Ryan Taylor, 2014
+© Ryan Taylor, 2014
