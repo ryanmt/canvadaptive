@@ -4,8 +4,10 @@ var TestIndex = React.createClass({
 
     propTypes: {
     },
-    onChange: function(e) {
-      React.renderComponent()
+    onClick: function(element, e) {
+      console.log(element)
+      console.log(e)
+      console.log(test.url)
     },
 
     render: function () {
@@ -14,7 +16,7 @@ var TestIndex = React.createClass({
             rows.push(
               <div z="1" className="testTableRow x-card host" key={test.id}>
                 <label className="CanvadaptiveTestIndex__Title">{test.title}</label>
-                <button type="button" onChange={this.onChange} className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">Start this test</button>
+                <button onClick={this.onClick()} type="button" className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">Start this test</button>
                 <div className="paper-shadow-bottom"></div>
               </div>)
           });
