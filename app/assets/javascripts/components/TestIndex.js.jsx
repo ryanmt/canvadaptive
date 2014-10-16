@@ -3,12 +3,11 @@
 var TestIndex = React.createClass({
 
     propTypes: {
-        testData: React.PropTypes.object.isRequired
     },
 
     render: function () {
           var rows = []
-          this.props.testData.tests.forEach(function(test) {
+          this.props.tests.forEach(function(test) {
             rows.push(
               <div z="1" className="testTableRow x-card host" key={test.id}>
                 <label className="CanvadaptiveTestIndex__Title">{test.title}</label>

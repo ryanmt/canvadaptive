@@ -1,11 +1,14 @@
 class CanvasQuestionLoader
   require 'open-uri'
+  hash = YAML.load_file(Rails.root.join("config", "canvas_proxy.yml"))
+  CanvasProxy = {}
+  hash.each {|k,v| CanvasProxy[k.to_sym] = v}
   ALLOWED_QUESTION_TYPES = %w(multiple_answers_question true_false_question)
-  #URL_BASE = ::CanvasProxy[:url]
+  URL_BASE = CanvasProxy[:url]
   HEADER = {
     "Content-Type" => 'application/json',
-    "Accept" => 'application/vnd.api+json'#,
-    #{}"Authorization" => "Bearer #{CanvasProxy[:api_key]}"
+    "Accept" => 'application/vnd.api+json',
+    "Authorization" => "Bearer #{CanvasProxy[:api_key]}"
   }
   attr_accessor :questions_hash, :statistics_hash
 

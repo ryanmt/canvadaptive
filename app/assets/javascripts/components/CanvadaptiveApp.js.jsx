@@ -2,8 +2,7 @@
 
 var CanvadaptiveApp = React.createClass({
    render: function () {
-       return <div>
-            <TestIndex testData={this.props} />
+       return <div className="app_contents">
            </div>
    }
 });

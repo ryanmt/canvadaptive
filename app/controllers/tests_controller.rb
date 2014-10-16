@@ -22,8 +22,11 @@ class TestsController < ApplicationController
   end
 
   def take
-    render 401 if @current_user.attempts_left?
+    #render 401 if @current_user.attempts_left?
+    @test_instance = TestInstance.create!( test_id: params[:test_id],
+      user_id: @current_user.id)
     #fetch questions at current difficulty from lib/grader.rb
+    @question = Grader.next_question(@test_instance)
   end
 
   # POST /tests
