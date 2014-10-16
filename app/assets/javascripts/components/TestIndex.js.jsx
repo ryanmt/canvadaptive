@@ -1,10 +1,5 @@
 /** @jsx React.DOM */
-var Card = React.createClass({
-  render: function() {
-    return(<div>this.contents</div>)
-  }
-});
-xreact.register('x-card', 'Card');
+
 var TestIndex = React.createClass({
 
     propTypes: {
@@ -15,13 +10,14 @@ var TestIndex = React.createClass({
           var rows = []
           this.props.testData.tests.forEach(function(test) {
             rows.push(
-              <x-card z="1" className="testTableRow" key={test.id}>
+              <div z="1" className="testTableRow x-card host" key={test.id}>
                 <label className="CanvadaptiveTestIndex__Title">{test.title}</label>
-                <button type="button" className="CanvadaptiveTestIndex__StartButton">Start this test</button>
-              </x-card>)
+                <button type="button" className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">Start this test</button>
+                <div className="paper-shadow-bottom"></div>
+              </div>)
           });
           return (
-        <div className="testTable">
+        <div className="testTable card-holder">
           {rows}
         </div>
     )}

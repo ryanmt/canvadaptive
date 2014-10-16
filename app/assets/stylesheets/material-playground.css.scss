@@ -1,3 +1,9 @@
+$bold_color: rgb(106, 69, 183);
+$body_background_color: #f1f1f3;
+$accent_color: #e91e63;
+$dark_grey: #777;
+$white: #FFF;
+
 * {
   /*box-sizing: border-box;*/
 }
@@ -9,7 +15,7 @@ html, body {
 body {
   font-family: 'RobotoDraft', 'Helvetica Neue', Helvetica, Arial;
   font-weight: 300;
-  background-color: #f1f1f3;
+  background-color: $body_background_color;
 }
 h2, h3 {
   font-weight: 300;
@@ -22,56 +28,71 @@ h3 {
   background-color: #ccc;
 }*/
 
-core-header-panel  {
+.core-header-panel  {
   height: 100%;
 }
 
-polyfill-rule {
+.polyfill-rule {
   content: 'core-header-panel #mainContainer' ;
   left: 45% !important;
 }
-core-header-panel[mode="cover"]::shadow #mainContainer {
+.core-header-panel[mode="cover"]::shadow #mainContainer {
   width: 465px;
   left: 50%;
   margin-left: calc(-465px/2);
 }
 
-core-header-panel::shadow #mainContainer::-webkit-scrollbar { 
+.core-header-panel::shadow #mainContainer::-webkit-scrollbar { 
   display: none; 
 }
 
 /*.purple-bg {
-  background: rgb(106, 69, 183);
+  background: $bold_color;
 }
 
 .purple {
-  color: rgb(106, 69, 183);
+  color: $bold_color;
 }*/
 
-main {
+.card_holder {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 4em;
 }
 
-main x-card {
+.x-card {
   margin: 16px;
 }
 
-paper-fab {
-  background-color: #e91e63;
+.paper-fab {
+  background-color: $accent_color;
   /*position: relative; */
   position: absolute;
   bottom: -27px;
   right: 1em;
   z-index: 10;
 }
-paper-fab.mini {
+.paper-fab.mini {
   bottom: -20px;
 }
+.x-card.host {
+  display: block;
+  background: white;
+  width: 400px;
+  height: auto;
+  position: relative;
+  border-radius: 2px;
+  box-shadow: 0px 1px 8px 3px rgba(0, 0, 0, 0.4);
+}
 
-x-card#hovercard {
+@media all and (max-width: 400px) {
+  .x-card.host {
+    width: 275px;
+  }
+}
+
+.x-card#hovercard {
   position: fixed;
   bottom: 2em;
   right: 2em;
@@ -79,7 +100,7 @@ x-card#hovercard {
   width: 40px;
   height: 40px;
 }
-x-card#hovercard::shadow #cardcontent {
+.x-card#hovercard::shadow #cardcontent {
   padding: 0;
   display: flex;
   justify-content: center;
@@ -89,24 +110,24 @@ x-card#hovercard::shadow #cardcontent {
 /*paper-fab[icon$="gamepad"] {
   background-color: black;
 }*/
-#hovercard paper-icon-button::shadow /deep/ path {
+#hovercard .paper-icon-button::shadow /deep/ path {
   fill: #777;
 }
 
 /* Theme ---------------------------------------------------------------------*/
 .purple-theme :-webkit-any(core-toolbar, paper-tabs) {
-  background: rgb(106, 69, 183);
+  background: $bold_color;
   fill: white;
 }
 .purple-theme :-moz-any(core-toolbar, paper-tabs) {
-  background: rgb(106, 69, 183);
+  background: $bold_color;
 }
 .purple-theme /deep/ core-icon::shadow path {
   fill: white;
 }
 
 .purple-theme .heading {
-  color: rgb(106, 69, 183);
+  color: $bold_color;
 }
 
 .purple-theme paper-fab {
@@ -115,30 +136,30 @@ x-card#hovercard::shadow #cardcontent {
 
 .purple-theme paper-button[raisedButton] {
   color: #fff;
-  background: rgb(106, 69, 183);
+  background: $bold_color;
 }
 .purple-theme paper-button[raisedButton]:hover {
-  background: rgb(82, 44, 160);
+  background: $bold_color;
 }
 
 .purple-theme paper-input /deep/ .focusedColor {
-  background: rgb(106, 69, 183);
-  color: rgb(106, 69, 183);
+  background: $bold_color;
+  color: $bold_color;
 }
 
 .purple-theme paper-slider::shadow #sliderKnobInner,
 .purple-theme paper-slider::shadow #sliderKnobInner::before,
 .purple-theme paper-slider::shadow #sliderBar::shadow #activeProgress {
-  background-color: rgb(106, 69, 183);
+  background-color: $bold_color;
 }
 
 .purple-theme :-webkit-any(paper-checkbox,
                            paper-radio-button)::shadow #ink {
-  color: rgb(106, 69, 183);
+  color: $bold_color;
 }
 .purple-theme :-moz-any(paper-checkbox,
                         paper-radio-button)::shadow #ink {
-  color: rgb(106, 69, 183);
+  color: $bold_color;
 }
 .purple-theme :-webkit-any(paper-checkbox[checked],
                            paper-radio-button[checked])::shadow #ink {
@@ -148,21 +169,21 @@ x-card#hovercard::shadow #cardcontent {
                            paper-radio-button[checked])::shadow #ink {
   color: grey;
 }
-    
+
 .purple-theme paper-checkbox::shadow #checkbox.checked {
-  border-color: rgb(106, 69, 183);
+  border-color: $bold_color;
 }
 .purple-theme paper-toggle-button::shadow paper-radio-button::shadow #ink {
-  color: rgb(106, 69, 183);
+  color: $bold_color;
 }
 .purple-theme  paper-toggle-button::shadow #toggleBar[checked] {
-  background-color: rgb(106, 69, 183);
+  background-color: $bold_color;
 }
 .purple-theme paper-toggle-button::shadow paper-radio-button[checked]::shadow #ink {
   color: grey;
 }
 .purple-theme /deep/ paper-radio-button::shadow #onRadio {
-  background-color: rgb(106, 69, 183);
+  background-color: $bold_color;
 }
 
 .purple-theme paper-tabs::shadow #selectionBar {
@@ -175,56 +196,56 @@ x-card#hovercard::shadow #cardcontent {
 
 /* -------------------------------------------------------------------------- */
 
-paper-radio-group paper-radio-button {
+.paper-radio-group paper-radio-button {
   padding-left: 0 !important;
 }
-paper-toggle-button {
+.paper-toggle-button {
   vertical-align: middle;
   margin-left: 35px;
 }
 
-paper-input,
-paper-slider,
-paper-progress {
+.paper-input,
+.paper-slider,
+.paper-progress {
   width: 100%;
 }
 
-paper-input /deep/ .focusedColor {
+.paper-input /deep/ .focusedColor {
   background: #009688;
   color: #009688;
 }
 
-paper-button[raisedButton] {
+.paper-button[raisedButton] {
   color: #fff;
   background: #009688;
 }
 
-paper-slider::shadow #sliderKnobInner,
-paper-slider::shadow #sliderKnobInner::before,
-paper-slider::shadow #sliderBar::shadow #activeProgress {
+.paper-slider::shadow #sliderKnobInner,
+.paper-slider::shadow #sliderKnobInner::before,
+.paper-slider::shadow #sliderBar::shadow #activeProgress {
   background-color: #009688;
 }
 
-paper-progress.red::shadow #activeProgress {
+.paper-progress.red::shadow #activeProgress {
   background-color: red;
 }
 
-paper-progress.red::shadow #secondaryProgress {
+.paper-progress.red::shadow #secondaryProgress {
   background-color: #f8bbd0;
 }
-paper-button[default] {
+.paper-button[default] {
   color: #4285f4;
 }
-paper-button + paper-button {
+.paper-button + .paper-button {
   margin-left: 8px;
 }
 
-paper-tabs, core-toolbar {
+.paper-tabs, .core-toolbar {
   background-color: #009688;
-  color: #fff;
+  color: $white;
 }
 
-paper-tabs {
+.paper-tabs {
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
 }
 /*paper-tabs paper-tab.core-selected {
@@ -242,26 +263,26 @@ paper-tabs {
   z-index: 10;
 }
 
-@media all and (max-width: 400px) {   
-  core-header-panel[mode="cover"]::shadow #mainContainer {
+@media all and (max-width: 400px) {
+  .core-header-panel[mode="cover"]::shadow #mainContainer {
     left: 50%;
     width: 275px;
     margin-left: calc(-275px/2);
   }
-  core-toolbar,
-  x-card h2 {
+  .core-toolbar,
+  .x-card h2 {
     font-size: 5vw;
   }
-  x-card img {
+  .x-card img {
     height: 150px !important;
   }
   .purple-theme core-toolbar.tall {
     height: 100px;
   }
-  core-toolbar > * {
+  .core-toolbar > * {
     margin: 0 !important;
   }
-  core-toolbar [icon="search"] {
+  .core-toolbar [icon="search"] {
     display: none;
   }
   #themetoggle {
@@ -271,12 +292,55 @@ paper-tabs {
   #hovercard {
     display: none;
   }
-  paper-fab.mini {
+  .paper-fab.mini {
     position: absolute;
   }
-  paper-fab {
+  .paper-fab {
     position: fixed;
     bottom: 15px;
     right: 15px;
   }
+}
+
+.paper-shadow {
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paper-shadow-top {
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+.paper-shadow-bottom {
+  clear: both;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+button.paper-button {
+  display: inline-block;
+  position: relative;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  font: inherit;
+  text-transform: uppercase;
+  outline: none;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  margin: 4px;
+}
+
+button.raisedButton {
+  color: $white;
+  background: $bold_color;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: $bold_color;
 }
