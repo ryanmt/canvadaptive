@@ -13,14 +13,21 @@
  *= require_tree .
  *= require_self
  */
-
-/*#header {
-  height:20px;
-  background:#017cff;
+@import 'variables';
+#header {
+  height:auto;
+  background: $bold_color;
   /*border-bottom:2px solid #ffe23f;*/
-/*  width:100%;
+  width:100%;
   margin:0px;
+  h1 {
+    color: $white;
+    margin-top: 0px;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    padding-left: 6px;
+  }
 }
 body {
-  background-color: #9fd1c7;
-} */
+  background-color: $body_background_color;
+}

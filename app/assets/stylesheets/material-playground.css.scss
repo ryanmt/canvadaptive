@@ -1,9 +1,4 @@
-$bold_color: rgb(106, 69, 183);
-$body_background_color: #f1f1f3;
-$accent_color: #e91e63;
-$dark_grey: #777;
-$white: #FFF;
-
+@import 'variables';
 * {
   /*box-sizing: border-box;*/
 }
@@ -331,6 +326,7 @@ button.paper-button {
 }
 
 button.raisedButton {
+  box-shadow: 0 2px 3px 1px $dark_grey;
   color: $white;
   background: $bold_color;
   background-image: initial;
@@ -343,4 +339,8 @@ button.raisedButton {
   background-origin: initial;
   background-clip: initial;
   background-color: $bold_color;
+}
+
+button.raisedButton:active {
+  box-shadow: 0 0 1.5px $dark_grey;
 }

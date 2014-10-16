@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="header"></div>
+  <div id="header"><h1>Canvadaptive Testing</h1></div>
   <%= yield %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag params[:controller] if Canvadaptive::Application.assets.find_asset("#{params[:controller]}.js") %>
