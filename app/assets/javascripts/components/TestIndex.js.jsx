@@ -1,5 +1,10 @@
 /** @jsx React.DOM */
-
+var Card = React.createClass({
+  render: function() {
+    return(<div>this.contents</div>)
+  }
+});
+xreact.register('x-card', 'Card');
 var TestIndex = React.createClass({
 
     propTypes: {
