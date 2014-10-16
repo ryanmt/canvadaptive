@@ -3,13 +3,23 @@
 var TestIndex = React.createClass({
 
     propTypes: {
-        testName: React.PropTypes.string.isRequired
+        testData: React.PropTypes.object.isRequired
     },
 
     render: function () {
-        return <div>
-            <h1 className="CanvadaptiveStartScreen__TestTitle">{this.props.testName}</h1>
-            <button type="button" className="CanvadaptiveStartScreen__StartButton">Start Test</button>
+          var rows = []
+          this.props.testData.tests.forEach(function(test) {
+            console.log(test)
+            rows.push(
+              <div className="testTableRow" key={test.id}>
+                // FORM HERE?
+                <label className="CanvadaptiveTestIndex__Title">{test.title}</label>
+                <button type="button" className="CanvadaptiveTestIndex__StartButton">Start this test</button>
+              </div>)
+          });
+          return (
+        <div className="testTable">
+          {rows}
         </div>
-    }
+    )}
 });
