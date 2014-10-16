@@ -1,0 +1,17 @@
+{
+  "name": "core-focusable",
+  "private": false,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  },
+  "homepage": "https://github.com/Polymer/core-focusable",
+  "_release": "0c3564b252",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0c3564b252bc32bff99a17571f3c93fcd1375a57"
+  },
+  "_source": "git://github.com/Polymer/core-focusable.git",
+  "_target": "master",
+  "_originalSource": "Polymer/core-focusable"
+}

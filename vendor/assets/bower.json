@@ -1,0 +1,6 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "material-playground": "git@github.com:ryanmt/material-playground.git"
+  }
+}
