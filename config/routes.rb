@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :questions
 
   resources :tests
-  get "test/:id/take" => 'test#take'
+  get "tests/:test_id/take" => 'tests#take'
 
   resources :users
 

@@ -18,7 +18,19 @@ class LtiController < ApplicationController
     authenticate!
     @launch_params = params.reject! {|k,v| ['controller', 'action'].include? k }
     # 1. DB backed storage of launches (reference by ID, serialized content)
+    @lti_launch = LtiLaunch.create!(data: @launch_params.to_json)
+    session[:launch_id] = @lti_launch.id
+    roles = @launch_params["ext_roles"].scan(/[A-Z]\w/).join(",")
+    @current_user = User.find_or_create_by!(canvas_user_id: @launch_params["custom_canvas_user_id"]) do |user|
+      user.canvas_course_id = @launch_params["custom_canvas_course_id"]
+      user.role = roles
+    end
+    session[:user_id] = @current_user.id
     if @launch_params["ext_roles"] =~ /Instructor/
+      #Test.create!(
+        #title: @launch_params["custom_canvas_assignment_title"], description: @launch_params["context_title"],
+        #attempt: @launch_params["custom_canvas_assignment_points_possible"], canvas_course_id: @launch_params["custom_canvas_course_id"], 
+        #question_min: 4, question_max: 120, mastery_threshold: 0.85, failure_threshold: 0.20 )
       redirect_to "/"
     else
       redirect_to tests_path
