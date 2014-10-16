@@ -228,10 +228,8 @@ h3 {
 .paper-progress.red::shadow #secondaryProgress {
   background-color: #f8bbd0;
 }
-.paper-button[default] {
-  color: #4285f4;
-}
-.paper-button + .paper-button {
+
+.paper-button {
   margin-left: 8px;
 }
 
