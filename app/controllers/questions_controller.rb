@@ -13,9 +13,19 @@ class QuestionsController < ApplicationController
   def show
   end
 
+  # GET /questions/:id
   def get_next
-    @question = ::Grader.next_question(TestInstance.find(params[:test_instance_id]))
+    @test_instance = TestInstance.find(params[:test_instance_id])
+    @question = ::Grader.next_question(@test_instance)
   end
+  # POST /questions/:id
+  def update
+    puts params
+    puts "IN UPDATE"
+    head :ok
+    #redirect_to "questions#get_next", format: :json, params
+  end
+  #"http://localhost:3100/questions.json"
 
   private
     # Use callbacks to share common setup or constraints between actions.

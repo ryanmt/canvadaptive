@@ -342,3 +342,16 @@ button.raisedButton {
 button.raisedButton:active {
   box-shadow: 0 0 1.5px $dark_grey;
 }
+button.AnswerSubmitButton {
+  margin-left: 80%;
+  margin-bottom: 8px;
+}
+.answerRows {
+  margin-left: 4%;
+}
+
+.showQuestionCard h3 p {
+  font-weight: bold;
+  margin-left: 2%;
+  padding-top: 8px;
+}

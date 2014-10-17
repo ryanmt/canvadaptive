@@ -18,7 +18,6 @@ var TestIndex = React.createClass({
                 <label className="CanvadaptiveTestIndex__Title">{test.title}
                   <button onClick={this.loadTest.bind(test, i)}  key={i} type="button" className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">Start this test</button>
                 </label>
-                <div className="paper-shadow-bottom"></div>
               </div>
             );
           }, this)}

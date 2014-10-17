@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   get "tests/:test_id/take" => 'tests#take'
-  get "questions/get_next" => 'questions#get_next'
+  match "questions/get_next" => 'questions#get_next', via: [:get, :post]
+  post "questions/:id/update" => 'questions#update'
 
   resources :tests
   resources :questions
@@ -64,8 +65,8 @@ Rails.application.routes.draw do
   post "lti/launch" => "lti#launch"
   get "tool_config(.xml)" => "lti#xml_config"
 
-  match "/oauth/launch" => "oauth#oauth_launch", via: [:get], as: :oauth_launch
-  match "/oauth2response" => "oauth#oauth_response", via: [:get], as: :oauth_response
+  get "/oauth/launch" => "oauth#oauth_launch", as: :oauth_launch
+  get "/oauth2response" => "oauth#oauth_response", as: :oauth_response
 
   root 'pages#index'
 end
