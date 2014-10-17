@@ -13,13 +13,13 @@ var AnswerRows = React.createClass({
   },
   render: function() {
     return(
-      <div className="answerRows">
+      <div className="answerRows" key="answer_row">
         {this.props.answers.map(function(answer, i) {
           if (!answer.text) {
             return true
           }
           return (
-            <div id="answerRow">
+            <div id="answerRow" key={answer.id}>
               <label className="Canvadaptive__AnswerText">
                 <input
                   type="checkbox"
@@ -43,17 +43,18 @@ var QuizTaking = React.createClass({
   },
   submitAnswer: function(e) {
     e.preventDefault();
+    var index = this.refs.answers.state.checked;
     $.ajax({
-      url: this.props.post_url,
+      url: this.props.question.post_url,
       method: 'post',
       dataType: 'json',
-      data: {},
+      data: {"selected_answer": this.props.question.answers[index]}, // TODO Where do I get my data?
       success: function(data) {
         this.setState({data: data});
         console.log(data);
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.post_url, status, err.toString());
+        console.error(this.props.question.post_url, status, err.toString());
       }.bind(this)
     });
     this.getNextQuestion();
@@ -75,7 +76,7 @@ var QuizTaking = React.createClass({
         <div className="showQuestionCard x-card host">
           <h3 dangerouslySetInnerHTML={{__html: this.props.question.text}}></h3>
           <form id="AnswerForm" className="AnswerForm" onSubmit={this.handleSubmit}>
-            <AnswerRows answers={this.props.question.answers}/>
+            <AnswerRows ref="answers" answers={this.props.question.answers}/>
             <div className="answer_submit">
               <button
                 onClick={this.submitAnswer}
