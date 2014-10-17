@@ -1,5 +1,6 @@
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
+  require 'grader'
 
   # GET /tests
   # GET /tests.json
@@ -10,6 +11,7 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @test = Test.find(params[:id])
   end
 
   # GET /tests/new
@@ -24,9 +26,13 @@ class TestsController < ApplicationController
   def take
     #render 401 if @current_user.attempts_left?
     @test_instance = TestInstance.create!( test_id: params[:test_id],
-      user_id: @current_user.id)
+      attempt_id: 0,
+      questions_asked: [],
+      questions_correct: [],
+      ability: 0,
+      user_id: current_user.id)
     #fetch questions at current difficulty from lib/grader.rb
-    @question = Grader.next_question(@test_instance)
+    @question = ::Grader.next_question(@test_instance)
   end
 
   # POST /tests

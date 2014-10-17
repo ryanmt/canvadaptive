@@ -13,7 +13,7 @@ class Grader
     def next_question(test_instance)
       return nil if check_for_finished(test_instance)
       # MAX difference from Test
-      range = Range.new([test_instance.ability-20,test_instance.ability+20])
+      range = Range.new(test_instance.ability-20,test_instance.ability+20)
       potential_questions = Question.where(difficulty: range).where.not(id: test_instance.questions_asked)
       potential_questions.sample
     end
@@ -40,6 +40,29 @@ class Grader
       end
       test_instance.ability = (2 + ability_shift)/test_instance.questions_asked.size
       test_instance.save!
+    end
+    def check_for_finished(test_instance)
+      test = Test.find(test_instance.test_id)
+      return false if test_instance.questions_asked.nil?
+      return false if test.question_min && test_instance.questions_asked.size < test.question_min
+      if test.mastery_threshold && test_instance.ability/100.0 > test.mastery_threshold
+        finished(true)
+        true
+      elsif test.failure_threshold && test_instance.ability/100.0 < test.failure_threshold
+        finished(false)
+        true
+      elsif test.question_max && test_instance.questions_asked.size > test.question_max
+        finished_undetermined
+        true
+      else
+        false
+      end
+    end
+    def finished(passed)
+      #post_grades
+    end
+    def finished_undetermined
+      # grade the questions later
     end
     def answered_correctly(question, test_instance)
       question.update_counts! true

@@ -13,7 +13,6 @@ var TestShow = React.createClass({
                 <label className="">{test.title}
                   <input checkbox />
                 </label>
-                
                 <div className="paper-shadow-bottom"></div>
               </div>)
           });

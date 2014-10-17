@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :questions
+  get "tests/:test_id/take" => 'tests#take'
+  get "questions/get_next" => 'questions#get_next'
 
   resources :tests
-  get "tests/:test_id/take" => 'tests#take'
-
+  resources :questions
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

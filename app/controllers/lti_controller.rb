@@ -26,6 +26,9 @@ class LtiController < ApplicationController
       user.role = roles
     end
     session[:user_id] = @current_user.id
+    if Rails.env == 'development'
+      session[:user_id] = 1
+    end
     if @launch_params["ext_roles"] =~ /Instructor/
       #Test.create!(
         #title: @launch_params["custom_canvas_assignment_title"], description: @launch_params["context_title"],

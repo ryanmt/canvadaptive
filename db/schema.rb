@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016201638) do
+ActiveRecord::Schema.define(version: 20141017065229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,7 +72,10 @@ ActiveRecord::Schema.define(version: 20141016201638) do
     t.integer  "question_max"
     t.float    "mastery_threshold"
     t.float    "failure_threshold"
+    t.integer  "test_instances_id"
   end
+
+  add_index "tests", ["test_instances_id"], name: "index_tests_on_test_instances_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

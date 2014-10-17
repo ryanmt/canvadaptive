@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    @current_user = User.find(1) if Rails.env == 'development'
     return unless session[:user_id]
     @current_user ||= User.find(session[:user_id])
   end

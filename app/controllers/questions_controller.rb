@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  #before_action :set_question, only: [:show, :edit, :update, :destroy]
+  require 'grader'
 
   # GET /questions
   # GET /questions.json
@@ -13,7 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def get_next
-    @question = Grader.next_question(TestInstance.find(params[:test_instance_id]))
+    @question = ::Grader.next_question(TestInstance.find(params[:test_instance_id]))
   end
 
   private

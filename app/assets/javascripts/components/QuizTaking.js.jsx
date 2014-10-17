@@ -2,13 +2,17 @@
 
 var AnswerShow = React.createClass({
   componentDidMount: function() {
+    console.log(this.props)
     $.get(this.props.source, function(results) {
     });
+  },
+  answerSelected: function(e) {
+    console.log(e.target.value)
   },
   render: function() {
     return (
       <div id="answerShow">
-        <input  />
+        <input type='checkbox' value={this.props}/>
         <p> Answer goes here </p>
       </div>
     )
@@ -31,9 +35,11 @@ var QuestionShow = React.createClass({
 var QuizTaking = React.createClass({
   render: function() {
     return (
-      <div id="showQuestion">
-        <h1>Question </h1>
-        <QuestionShow />
+      <div className="card-holder">
+        <div id="showQuestionCard x-card host">
+          <h1>Question </h1>
+          <QuestionShow />
+        </div>
       </div>
     )
   }
