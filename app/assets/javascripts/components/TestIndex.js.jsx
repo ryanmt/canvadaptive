@@ -15,9 +15,17 @@ var TestIndex = React.createClass({
           {this.props.tests.map(function(test, i) {
             return (
               <div className="testTableRow x-card host" key={test.id}>
-                <label className="CanvadaptiveTestIndex__Title">{test.title}
-                  <button onClick={this.loadTest.bind(test, i)}  key={i} type="button" className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">Start this test</button>
+                <label className="CanvadaptiveTestIndex__Title" htmlFor={"test" + test.id}>
+                  {test.title}
                 </label>
+                <button
+                  onClick={this.loadTest.bind(test, i)}
+                  id={"test" + test.id}
+                  key={i}
+                  type="button"
+                  className="CanvadaptiveTestIndex__StartButton paper-button raisedButton">
+                  Start this test
+                </button>
               </div>
             );
           }, this)}

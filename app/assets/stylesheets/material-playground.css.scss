@@ -58,6 +58,7 @@ h3 {
 
 .x-card {
   margin: 16px;
+  min-height: 50px;
 }
 
 .paper-fab {
@@ -266,9 +267,6 @@ h3 {
   .x-card h2 {
     font-size: 5vw;
   }
-  .x-card img {
-    height: 150px !important;
-  }
   .purple-theme core-toolbar.tall {
     height: 100px;
   }
@@ -350,6 +348,19 @@ button.raisedButton:disabled {
 button.AnswerSubmitButton {
   margin-left: 80%;
   margin-bottom: 8px;
+}
+
+.testTableRow {
+  height: 40px;
+}
+
+button.CanvadaptiveTestIndex__StartButton {
+  margin-top: 10px;
+  float:right;
+}
+label.CanvadaptiveTestIndex__Title {
+  margin-left: 4%;
+  line-height: 40px;
 }
 .answerRows {
   margin-left: 4%;

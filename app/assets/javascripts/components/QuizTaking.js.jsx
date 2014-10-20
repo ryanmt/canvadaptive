@@ -61,7 +61,8 @@ var QuizTaking = React.createClass({
       dataType: 'json',
       data: {"selected_answer": this.props.question.answers[index], test_instance_id: this.props.test_instance.id},
       success: function(data) {
-        this.replaceProps(data)
+        this.replaceProps(data);
+        this.refs.answers.setState({checked: false});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.question.post_url, xhr.responseText,status, err.toString());
