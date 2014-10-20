@@ -44,9 +44,15 @@ var QuizTaking = React.createClass({
     return {disabled:true}
   },
   componentDidMount: function() {
-    console.log(this.props)
   },
-  submitAnswer: function(e) {
+  debugGrading: function() {
+    console.log(this.props.question.difficulty)
+    console.log(this.props.test_instance.ability)
+  },
+  componentWillReceiveProps: function() {
+    this.debugGrading();
+  },
+  submitAnswerAndGetNext: function(e) {
     e.preventDefault();
     var index = this.refs.answers.state.checked;
     $.ajax({
@@ -55,22 +61,11 @@ var QuizTaking = React.createClass({
       dataType: 'json',
       data: {"selected_answer": this.props.question.answers[index], test_instance_id: this.props.test_instance.id},
       success: function(data) {
-        console.log(data)
         this.replaceProps(data)
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.question.post_url, xhr.responseText,status, err.toString());
       }.bind(this)
-    });
-  },
-  getNextQuestion: function(e) {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function(data) {
-        console.log("SUCCESS!!")
-        this.props.newData = data;
-      }.bind(this),
     });
   },
   getCheckedState: function(e) {
@@ -87,7 +82,7 @@ var QuizTaking = React.createClass({
             <div className="answer_submit">
               <button
                 disabled={this.state.disabled}
-                onClick={this.submitAnswer}
+                onClick={this.submitAnswerAndGetNext}
                 type="button"
                 form="AnswerForm"
                 formaction={this.props.question.post_url}

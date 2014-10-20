@@ -5,13 +5,15 @@ class Grader
       ability = test_instance.ability
       if selected_answer.correct
         answered_correctly(question, test_instance)
+        update_ability(test_instance, question, true)
       else
         answered_wrongly(question, test_instance)
+        update_ability(test_instance, question, false)
       end
-      update_ability(test_instance, question)
     end
     def next_question(test_instance)
-      return nil if check_for_finished(test_instance)
+      finished = check_for_finished(test_instance)
+      return finished if finished
       # MAX difference from Test
       range = Range.new(test_instance.ability-20,test_instance.ability+20)
       potential_questions = Question.where(difficulty: range).where.not(id: test_instance.questions_asked)
@@ -19,7 +21,8 @@ class Grader
     end
 
     private
-    def update_ability(test_instance, question)
+    def update_ability(test_instance, question, correct)
+      difference = question.difficulty - test_instance.ability
       ability_shift = case question.difficulty - test_instance.ability
       when 10..Float::INFINITY
         13
@@ -38,7 +41,7 @@ class Grader
       else
         -13
       end
-      test_instance.ability = (2 + ability_shift)/test_instance.questions_asked.size
+      test_instance.ability += (2 + ability_shift)/test_instance.questions_asked.size
       test_instance.save!
     end
     def check_for_finished(test_instance)
@@ -46,26 +49,20 @@ class Grader
       return false if test_instance.questions_asked.nil?
       return false if test.question_min && test_instance.questions_asked.size < test.question_min
       if test.mastery_threshold && test_instance.ability/100.0 > test.mastery_threshold
-        finished(true)
+        "success"
       elsif test.failure_threshold && test_instance.ability/100.0 < test.failure_threshold
-        finished(false)
+        post_grades
+        "failure"
       elsif test.question_max && test_instance.questions_asked.size > test.question_max
-        finished_undetermined
+        "needed_more_questions"
+      elsif test_instance.questions_asked.size == Question.count
+        "out_of_questions"
       else
-        false
+        "unknown"
       end
     end
-    def finished(passed)
+    def post_grades
       #post_grades
-      # return the page reference to render
-      if passed
-        #render file: Rails.public_path.join("templates","home.html"), layout: true
-      else
-      end
-    end
-    def finished_undetermined
-      # grade the questions later
-      #render file: Rails.public_path.join("templates","home.html"), layout: true
     end
     def answered_correctly(question, test_instance)
       question.update_counts! true

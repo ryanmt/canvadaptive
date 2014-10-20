@@ -29,7 +29,7 @@ class TestsController < ApplicationController
       attempt_id: 0,
       questions_asked: [],
       questions_correct: [],
-      ability: 0,
+      ability: 50,
       user_id: current_user.id)
     #fetch questions at current difficulty from lib/grader.rb
     @question = ::Grader.next_question(@test_instance)

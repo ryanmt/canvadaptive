@@ -68,5 +68,10 @@ Rails.application.routes.draw do
   get "/oauth/launch" => "oauth#oauth_launch", as: :oauth_launch
   get "/oauth2response" => "oauth#oauth_response", as: :oauth_response
 
+  get '/foo', :to => redirect('/foo.html')
+  get '/failure', to: redirect("/failure.html")
+  get '/success', to: redirect("/success.html")
+  get '/out_of_questions', to: redirect("/out_of_questions.html")
+
   root 'pages#index'
 end
