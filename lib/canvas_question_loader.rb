@@ -35,7 +35,6 @@ class CanvasQuestionLoader
     url = @url + "/statistics"
     @statistics_hash = JSON.parse(make_request(url))
   end
- 
   def fetch_quiz
   end
 

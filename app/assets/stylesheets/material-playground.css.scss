@@ -32,9 +32,9 @@ h3 {
   left: 45% !important;
 }
 .core-header-panel[mode="cover"]::shadow #mainContainer {
-  width: 465px;
+  width: $core-header-width;
   left: 50%;
-  margin-left: calc(-465px/2);
+  margin-left: calc(-$core-header-width/2);
 }
 
 .core-header-panel::shadow #mainContainer::-webkit-scrollbar { 
@@ -341,6 +341,11 @@ button.raisedButton {
 
 button.raisedButton:active {
   box-shadow: 0 0 1.5px $dark_grey;
+}
+button.raisedButton:disabled {
+  box-shadow: 0 0 0 $dark_grey;
+  background-color: $dark_grey;
+  cursor: default;
 }
 button.AnswerSubmitButton {
   margin-left: 80%;

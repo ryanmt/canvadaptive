@@ -2,14 +2,15 @@
 
 var AnswerRows = React.createClass({
   getInitialState: function () {
-    return{checked: null};
+    return{checked: false};
   },
   updateSelection: function(answer, i) {
-    if (this.state.checked == i) {
-      this.setState({checked: null});
+    if (this.state.checked === i) {
+      this.setState({checked: false});
     } else {
-      this.setState({checked: i});
+      this.setState({checked: Number(i)});
     }
+    this.props.change_callback();
   },
   render: function() {
     return(
@@ -19,13 +20,13 @@ var AnswerRows = React.createClass({
             return true
           }
           return (
-            <div id="answerRow" key={answer.id}>
+            <div className="answerRow" key={answer.id}>
               <label className="Canvadaptive__AnswerText">
                 <input
                   type="checkbox"
                   key={answer.id}
-                  value={answer.id}
-                  checked={this.state.checked == i ? 'checked' : false}
+                  value={i}
+                  checked={this.state.checked === i ? 'checked' : false}
                   onChange={this.updateSelection.bind(this, answer, i)}
                   />
                 {answer.text}
@@ -39,7 +40,11 @@ var AnswerRows = React.createClass({
 });
 
 var QuizTaking = React.createClass({
+  getInitialState: function() {
+    return {disabled:true}
+  },
   componentDidMount: function() {
+    console.log(this.props)
   },
   submitAnswer: function(e) {
     e.preventDefault();
@@ -48,19 +53,17 @@ var QuizTaking = React.createClass({
       url: this.props.question.post_url,
       method: 'post',
       dataType: 'json',
-      data: {"selected_answer": this.props.question.answers[index]}, // TODO Where do I get my data?
+      data: {"selected_answer": this.props.question.answers[index], test_instance_id: this.props.test_instance.id},
       success: function(data) {
-        this.setState({data: data});
-        console.log(data);
+        console.log(data)
+        this.replaceProps(data)
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.question.post_url, status, err.toString());
+        console.error(this.props.question.post_url, xhr.responseText,status, err.toString());
       }.bind(this)
     });
-    this.getNextQuestion();
   },
   getNextQuestion: function(e) {
-    console.log("In getNextQuestion")
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -70,15 +73,20 @@ var QuizTaking = React.createClass({
       }.bind(this),
     });
   },
+  getCheckedState: function(e) {
+    var checked_boxes = $(".answerRow input:checked")
+    this.setState({disabled: checked_boxes.length > 0 ? false : true})
+  },
   render: function() {
     return (
       <div className="card-holder">
         <div className="showQuestionCard x-card host">
           <h3 dangerouslySetInnerHTML={{__html: this.props.question.text}}></h3>
           <form id="AnswerForm" className="AnswerForm" onSubmit={this.handleSubmit}>
-            <AnswerRows ref="answers" answers={this.props.question.answers}/>
+            <AnswerRows ref="answers" answers={this.props.question.answers} change_callback={this.getCheckedState}/>
             <div className="answer_submit">
               <button
+                disabled={this.state.disabled}
                 onClick={this.submitAnswer}
                 type="button"
                 form="AnswerForm"

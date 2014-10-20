@@ -47,22 +47,25 @@ class Grader
       return false if test.question_min && test_instance.questions_asked.size < test.question_min
       if test.mastery_threshold && test_instance.ability/100.0 > test.mastery_threshold
         finished(true)
-        true
       elsif test.failure_threshold && test_instance.ability/100.0 < test.failure_threshold
         finished(false)
-        true
       elsif test.question_max && test_instance.questions_asked.size > test.question_max
         finished_undetermined
-        true
       else
         false
       end
     end
     def finished(passed)
       #post_grades
+      # return the page reference to render
+      if passed
+        #render file: Rails.public_path.join("templates","home.html"), layout: true
+      else
+      end
     end
     def finished_undetermined
       # grade the questions later
+      #render file: Rails.public_path.join("templates","home.html"), layout: true
     end
     def answered_correctly(question, test_instance)
       question.update_counts! true
